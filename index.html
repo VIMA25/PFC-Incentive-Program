@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patient Incentive Card — Program & Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+ *{box-sizing:border-box} html,body{margin:0}
+ body{font-family:'Hanken Grotesk',sans-serif;color:#16323B;background:#ece7db;line-height:1.6;-webkit-font-smoothing:antialiased}
+ .doc{max-width:980px;margin:0 auto;background:#fffdf9}
+ .wrap{padding:0 56px}
+ .serif{font-family:'Newsreader',serif}
+ .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#B0894E;font-weight:600}
+ .muted{color:#6b7d80}
+ .hero{background:linear-gradient(158deg,#1c424a,#16323B 55%,#0f262c);color:#f3ecdb;padding:56px 56px 50px}
+ .hero .eyebrow{color:#cBa769}
+ .hero h1{font-family:'Newsreader',serif;font-size:48px;font-weight:500;line-height:1.04;margin:12px 0 16px;letter-spacing:-.5px}
+ .hero h1 em{font-style:italic;color:#d9b878}
+ .hero p{font-size:17px;color:#cdd6d3;max-width:610px;margin:0}
+ section{padding:46px 0 6px}
+ .sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:24px}
+ .sec-h h2{font-family:'Newsreader',serif;font-size:28px;font-weight:500;letter-spacing:-.3px;margin:0}
+ .sec-h .n{font-family:'Newsreader',serif;font-size:14px;color:#B0894E;font-weight:600;border:1px solid #B0894E;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex:0 0 30px}
+ .steps{display:grid;grid-template-columns:repeat(3,1fr)}
+ .step{padding:0 22px;position:relative}
+ .step:not(:last-child)::after{content:"";position:absolute;right:0;top:16px;bottom:16px;width:1px;background:#e4e0d6}
+ .step .dot{font-family:'Newsreader',serif;font-size:18px;color:#fff;background:#5E8B82;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:13px}
+ .step h3{font-size:18px;font-weight:600;margin:0 0 5px}
+ .step p{font-size:14.5px;color:#6b7d80;margin:0}
+ .pol{display:grid;grid-template-columns:repeat(2,1fr);gap:0 38px}
+ .pol .row{display:flex;gap:14px;padding:13px 0;border-top:1px solid #e4e0d6}
+ .pol .k{flex:0 0 116px;font-weight:600;font-size:14px}
+ .pol .k::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#5E8B82;margin-right:8px;vertical-align:2px}
+ .pol .v{font-size:14px;color:#6b7d80}
+ .econ{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+ .stat{background:#F6F1E7;border-radius:8px;padding:18px}
+ .stat .num{font-family:'Newsreader',serif;font-size:30px;font-weight:600;line-height:1}
+ .stat .lab{font-size:12.5px;color:#6b7d80;margin-top:7px}
+ .stat.hi{background:#16323B} .stat.hi .num{color:#e7b56a} .stat.hi .lab{color:#bcd0c9}
+ .econ-note{font-size:14.5px;color:#6b7d80;margin-top:18px;max-width:770px} .econ-note b{color:#16323B;font-weight:600}
+ .pilot{background:#F6F1E7;border-left:3px solid #B0894E;border-radius:0 8px 8px 0;padding:22px 26px}
+ .pilot h3{font-family:'Newsreader',serif;font-size:18px;font-weight:600;margin:0 0 7px}
+ .pilot p{font-size:14.5px;color:#6b7d80;margin:0}
+ .grouplabel{font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9aa39e;font-weight:600;margin:0 0 13px}
+ .expect{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+ .exp{background:#F6F1E7;border-radius:8px;padding:16px 18px}
+ .eh{font-family:'Newsreader',serif;font-size:16px;font-weight:600;color:#16323B;margin-bottom:4px}
+ .ep{font-size:13.5px;color:#6b7d80;line-height:1.5}
+ .divider{height:1px;background:#e4e0d6;margin:46px 0 0}
+ .dirintro{font-size:14.5px;color:#6b7d80;max-width:770px;margin:-10px 0 28px}
+ .panel{width:100%;max-width:860px;margin:0 auto 30px}
+ footer{margin-top:10px;border-top:1px solid #e4e0d6;padding:22px 56px 34px;font-size:12px;color:#6b7d80;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+ @media(max-width:760px){.wrap,.hero,footer{padding-left:24px;padding-right:24px}.steps,.econ,.pol{grid-template-columns:1fr}.step:not(:last-child)::after{display:none}}
+</style></head><body><div class="doc">
+<div class="hero">
+ <div class="eyebrow">Procreate Fertility Center of Virginia</div>
+ <h1>The Patient<br>Incentive <em>Card</em></h1>
+ <p>A premium card worth $5,000 toward a full IVF cycle — earned by our patients, never expiring, and theirs to keep for a second cycle or to pass to someone beginning the journey.</p>
+</div>
+<div class="wrap">
+ <section>
+  <div class="sec-h"><span class="n">1</span><h2>How it works</h2></div>
+  <div class="steps">
+   <div class="step"><div class="dot">1</div><h3>Earned</h3><p>Given to a patient who completes an IVF cycle — a thank-you, not a coupon anyone can get.</p></div>
+   <div class="step"><div class="dot">2</div><h3>Kept or given</h3><p>She redeems it for her own next cycle, or hands it across the table to someone starting theirs.</p></div>
+   <div class="step"><div class="dot">3</div><h3>Redeemed</h3><p>Brought to any of our four Hampton Roads locations toward a full cycle. It never expires.</p></div>
+  </div>
+ </section>
+ <div class="divider"></div>
+ <section>
+  <div class="sec-h"><span class="n">2</span><h2>Policies &amp; terms</h2></div>
+  <div class="pol">
+   <div class="row"><div class="k">Value</div><div class="v">Up to $5,000 discount toward one full IVF cycle — a discount toward care, not cash or stored credit.</div></div>
+   <div class="row"><div class="k">Eligibility</div><div class="v">Issued to patients who complete an IVF cycle.</div></div>
+   <div class="row"><div class="k">Expiration</div><div class="v">Never expires.</div></div>
+   <div class="row"><div class="k">Transfer</div><div class="v">Freely transferable; in practice redeemed by a new patient beginning care.</div></div>
+   <div class="row"><div class="k">Redemption</div><div class="v">One full IVF cycle, any location. One per cycle. Not combinable with other offers.</div></div>
+   <div class="row"><div class="k">Balance</div><div class="v">Recipient covers the remaining balance; Affirm / PatientFi financing available.</div></div>
+   <div class="row"><div class="k">Recognition</div><div class="v">Givers are thanked when their card is redeemed — never paid for referring.</div></div>
+   <div class="row"><div class="k">Tracking</div><div class="v">Each card is individually numbered for attribution and recognition.</div></div>
+  </div>
+ </section>
+ <div class="divider"></div>
+ <section>
+  <div class="sec-h"><span class="n">3</span><h2>The economics</h2></div>
+  <div class="grouplabel">Today’s baseline — trailing 12 months</div>
+  <div class="econ">
+   <div class="stat"><div class="num">173</div><div class="lab">Fresh IVF cycles / year (~98 self-pay)</div></div>
+   <div class="stat"><div class="num">25%</div><div class="lab">Return-cycle rate (within 12 mo)*</div></div>
+   <div class="stat"><div class="num">17%</div><div class="lab">New patients from word-of-mouth</div></div>
+   <div class="stat"><div class="num">~$360k</div><div class="lab">Spent yearly on ad-hoc discounts</div></div>
+  </div>
+  <div class="grouplabel" style="margin-top:20px">Unit economics &amp; break-even</div>
+  <div class="econ">
+   <div class="stat"><div class="num">$15.4k</div><div class="lab">Net per self-pay cycle today</div></div>
+   <div class="stat hi"><div class="num">$10.4k</div><div class="lab">Net after the $5k card — still beats insured</div></div>
+   <div class="stat"><div class="num">$8k</div><div class="lab">Net per insured cycle</div></div>
+   <div class="stat"><div class="num" style="color:#C6664B">~32%</div><div class="lab">Incrementality break-even</div></div>
+  </div>
+  <p class="econ-note">A discounted self-pay cycle still nets <b>~$10.4k</b> — comfortably above the ~$8k we keep on an insured cycle. The program creates value the moment <b>more than ~1 in 3 redemptions (the ~32% break-even)</b> come from patients who would not otherwise have come, and much of its cost simply formalizes the <b>~$360k/yr</b> we already give away in ad-hoc discounts. <span style="font-size:12.5px;color:#9aa39e">*The 12-month figure understates true repeat behavior; a 24-month cohort read is planned.</span></p>
+ </section>
+ <div class="divider"></div>
+ <section>
+  <div class="sec-h"><span class="n">4</span><h2>Pilot &amp; guardrails</h2></div>
+  <div class="pilot"><h3>A bounded test</h3><p>Launch as a capped 100-card pilot with a randomized holdout group and a one-question intake at redemption — “would you have done this cycle without the card?” — to measure true incrementality. ~9-month read; the fixed card cap bounds exposure. A Virginia healthcare-law opinion on transferability is required before any card is issued.</p></div>
+  <div class="grouplabel" style="margin-top:24px">What we expect to achieve</div>
+  <div class="expect">
+   <div class="exp"><div class="eh">Measure the unknown</div><div class="ep">A real incrementality rate — the single number the whole case rests on — instead of an estimate.</div></div>
+   <div class="exp"><div class="eh">Clear the break-even</div><div class="ep">Redemptions running above the ~32% incrementality bar, so the program is net-positive after cannibalization.</div></div>
+   <div class="exp"><div class="eh">Lift loyalty &amp; referrals</div><div class="ep">A higher return-cycle rate in the card group than the holdout, and referrals above the 17% word-of-mouth baseline.</div></div>
+   <div class="exp"><div class="eh">A clear go / no-go</div><div class="ep">Pre-committed thresholds that say plainly whether to scale, redesign, or stop.</div></div>
+  </div>
+ </section>
+ <div class="divider"></div>
+ <section>
+  <div class="sec-h"><span class="n">5</span><h2>Three design directions</h2></div>
+  <p class="dirintro">There is no existing brand to honor, so each direction proposes its own name, palette, type, and motif. All three carry the same card content and terms — only the identity differs. Pick a direction, not just a color.</p>
+ </section>
+</div>
+<div class="wrap"><div class="panel">
+  <div data-drags-parent="1" style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#5a6b66; padding:0 0 14px 4px; font-weight:600;">Direction 01 — Coastal · “Full Circle”</div>
+  <div style="background:#ffffff; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.10), 0 24px 60px -30px rgba(20,40,45,.35); padding:60px; display:flex; flex-direction:column; gap:46px;">
+
+    <!-- Direction header -->
+    <div style="display:flex; flex-direction:column; gap:10px; border-bottom:1px solid #ece7dc; padding-bottom:30px;">
+      <div style="font-family:'Newsreader',serif; font-size:38px; font-weight:500; color:#16323B; line-height:1;">Full Circle</div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:14.5px; line-height:1.55; color:#5d6661; max-width:560px;">Hampton Roads at first light. The tide always comes back around — a gift given becomes a gift returned. Calm, watery, generous; clinical nowhere in sight.</div>
+    </div>
+
+    <!-- Identity -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#9aa39e; font-weight:600;">Wordmark</div>
+      <div style="display:flex; align-items:center; gap:26px;">
+        <!-- ripple mark -->
+        <div style="position:relative; width:62px; height:62px; flex:none;">
+          <div style="position:absolute; inset:0; border:1.5px solid #16323B; border-radius:50%;"></div>
+          <div style="position:absolute; inset:11px; border:1.5px solid #16323B; opacity:.55; border-radius:50%;"></div>
+          <div style="position:absolute; inset:22px; border:1.5px solid #16323B; opacity:.3; border-radius:50%;"></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:3px;">
+          <div style="font-family:'Newsreader',serif; font-size:29px; font-weight:500; letter-spacing:.01em; color:#16323B; line-height:1;">Procreate</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:9.5px; letter-spacing:0.34em; text-transform:uppercase; color:#7c8580;">Fertility Center of Virginia</div>
+        </div>
+      </div>
+      <div style="font-family:'Newsreader',serif; font-style:italic; font-size:14px; color:#7c8580;">A tide that always returns — concentric rings reading at once as a circle and a ripple.</div>
+    </div>
+
+    <!-- Palette -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#9aa39e; font-weight:600;">Palette</div>
+      <div style="font-family:'Newsreader',serif; font-style:italic; font-size:14px; color:#7c8580; margin-top:-6px;">Deep tidewater grounded by sand and sea glass, with a single coral kept for hope.</div>
+      <div style="display:flex; gap:12px;">
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#16323B;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#2b322f; font-weight:600; margin-top:9px;">Deep Tide</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#9aa39e;">#16323B</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#5E8B82;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#2b322f; font-weight:600; margin-top:9px;">Sea Glass</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#9aa39e;">#5E8B82</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#E4D8C3; border:1px solid #ece7dc;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#2b322f; font-weight:600; margin-top:9px;">Warm Sand</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#9aa39e;">#E4D8C3</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#F6F1E7; border:1px solid #ece7dc;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#2b322f; font-weight:600; margin-top:9px;">Shell White</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#9aa39e;">#F6F1E7</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#DD9A7C;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#2b322f; font-weight:600; margin-top:9px;">Coral Hope</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#9aa39e;">#DD9A7C</div></div>
+      </div>
+    </div>
+
+    <!-- Type -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#9aa39e; font-weight:600;">Typography</div>
+      <div style="display:flex; gap:24px;">
+        <div style="flex:1; border:1px solid #ece7dc; border-radius:2px; padding:20px 22px;">
+          <div style="font-family:'Newsreader',serif; font-size:42px; color:#16323B; line-height:1;">Aa</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12.5px; color:#2b322f; font-weight:600; margin-top:14px;">Newsreader</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; color:#9aa39e; letter-spacing:.04em;">Display — headlines &amp; program name</div>
+        </div>
+        <div style="flex:1; border:1px solid #ece7dc; border-radius:2px; padding:20px 22px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:42px; color:#16323B; line-height:1; font-weight:600;">Aa</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12.5px; color:#2b322f; font-weight:600; margin-top:14px;">Hanken Grotesk</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; color:#9aa39e; letter-spacing:.04em;">Text — labels, terms &amp; body</div>
+        </div>
+      </div>
+      <div style="font-family:'Newsreader',serif; font-style:italic; font-size:14px; color:#7c8580;">Newsreader’s literary warmth set against Hanken Grotesk’s calm clarity — humane, never cold.</div>
+    </div>
+
+    <!-- The card -->
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#9aa39e; font-weight:600;">The card — front &amp; back · 3.375″ × 2.125″</div>
+
+      <!-- FRONT -->
+      <div style="position:relative; width:100%; aspect-ratio:1.586; border-radius:12px; overflow:hidden; background:#16323B; box-shadow:0 30px 50px -28px rgba(20,40,45,.7); padding:34px 38px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="position:absolute; bottom:-90px; left:-70px; width:300px; height:300px; border:1.5px solid #5E8B82; opacity:.32; border-radius:50%;"></div>
+        <div style="position:absolute; bottom:-50px; left:-30px; width:220px; height:220px; border:1.5px solid #5E8B82; opacity:.22; border-radius:50%;"></div>
+        <div style="position:absolute; bottom:-10px; left:10px; width:140px; height:140px; border:1.5px solid #5E8B82; opacity:.14; border-radius:50%;"></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; position:relative;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#9bb3ac; font-weight:600;">Procreate Fertility Center of Virginia</div>
+          <div style="position:relative; width:30px; height:30px;"><div style="position:absolute; inset:0; border:1.2px solid #9bb3ac; border-radius:50%;"></div><div style="position:absolute; inset:6px; border:1.2px solid #9bb3ac; opacity:.6; border-radius:50%;"></div><div style="position:absolute; inset:12px; border:1.2px solid #9bb3ac; opacity:.35; border-radius:50%;"></div></div>
+        </div>
+        <div style="position:relative; text-align:center;">
+          <div style="font-family:'Newsreader',serif; font-style:italic; font-size:52px; color:#E4D8C3; line-height:.95;">Full Circle</div>
+          <div style="display:inline-flex; align-items:center; gap:12px; margin-top:14px;"><div style="width:30px; height:1px; background:#5E8B82;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#cdd9d3; font-weight:500;">$5,000 toward one full IVF cycle</div><div style="width:30px; height:1px; background:#5E8B82;"></div></div>
+        </div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; position:relative;">
+          <div style="flex:1; max-width:330px;">
+            <div style="font-family:'Hanken Grotesk',sans-serif; font-size:8.5px; letter-spacing:0.24em; text-transform:uppercase; color:#7e948d; margin-bottom:9px;">Passed to you by</div>
+            <div style="height:1px; background:#3a544c;"></div>
+          </div>
+          <div style="font-family:'Space Mono',monospace; font-size:11px; color:#9bb3ac; letter-spacing:.05em;">No. 0001</div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div style="position:relative; width:100%; aspect-ratio:1.46; border-radius:12px; overflow:hidden; background:#F6F1E7; box-shadow:0 30px 50px -30px rgba(20,40,45,.45); padding:36px 44px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="text-align:center;">
+          <div style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:#16323B; line-height:1.5; max-width:470px; margin:0 auto;">Some things come back around. When you’re ready to begin, bring this with you — we’ll be right here.</div>
+          <div style="font-family:'Newsreader',serif; font-style:italic; font-size:13px; color:#9aa39e; line-height:1.45; max-width:430px; margin:10px auto 0;">Algunas cosas vuelven. Cuando estés lista, tráelo contigo.</div>
+        </div>
+        <div style="display:flex; gap:16px;">
+          <div style="flex:1; text-align:center;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; font-weight:700; color:#16323B; line-height:1.35;">Valid toward one full IVF cycle</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:9px; color:#9aa39e; margin-top:4px;">Un ciclo completo de FIV</div></div>
+          <div style="width:1px; background:#e3dccb;"></div>
+          <div style="flex:1; text-align:center;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; font-weight:700; color:#16323B; line-height:1.35;">Never expires</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:9px; color:#9aa39e; margin-top:4px;">No vence nunca</div></div>
+          <div style="width:1px; background:#e3dccb;"></div>
+          <div style="flex:1; text-align:center;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; font-weight:700; color:#16323B; line-height:1.35;">Yours to keep, or pass on</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:9px; color:#9aa39e; margin-top:4px;">Conservar o entregar</div></div>
+        </div>
+        <div style="border-top:1px solid #e3dccb; padding-top:14px; text-align:center;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:8.5px; color:#8a9088; line-height:1.6;">Applies as $5,000 off one full IVF cycle at any Procreate location. Not redeemable for cash; holds no stored value.</div>
+          <div style="font-family:'Space Mono',monospace; font-size:8.5px; color:#a9b2ac; margin-top:8px; letter-spacing:.05em;">procreatefertility.com · No. 0001 · transferable · non-expiring</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sleeve / note -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#9aa39e; font-weight:600;">Companion carrier</div>
+      <div style="position:relative; width:100%; height:150px; border-radius:6px; background:repeating-linear-gradient(135deg,#eef3ef,#eef3ef 9px,#e7eee9 9px,#e7eee9 18px); border:1px solid #d7e0db; overflow:hidden; display:flex; align-items:center; padding:0 40px;">
+        <div style="position:absolute; right:-30px; top:-30px; width:140px; height:140px; border:1.5px solid #5E8B82; opacity:.3; border-radius:50%;"></div>
+        <div style="position:absolute; right:5px; top:5px; width:80px; height:80px; border:1.5px solid #5E8B82; opacity:.2; border-radius:50%;"></div>
+        <div>
+          <div style="font-family:'Newsreader',serif; font-style:italic; font-size:18px; color:#16323B;">A word, in my own hand —</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; color:#6f766e; margin-top:6px;">A rigid frosted-acrylic carrier the card clicks into — durable, reusable, no paper. Its inner face is an ink-receptive matte panel for a longer handwritten line that sets permanently.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Material -->
+    <div style="display:flex; flex-direction:column; gap:10px; background:#f8f5ee; border-radius:4px; padding:22px 24px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#9aa39e; font-weight:600;">Material &amp; finish</div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:13.5px; line-height:1.6; color:#3d443f;">Triple-laminate composite over a stainless core — weighty, flex-proof, water-resistant, no paper. Soft-touch matte face, edges painted sea glass, ripples blind-embossed, wordmark in sea-glass foil. The “passed to you by” line is a matte ink-receptive panel that takes a pen permanently.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel">
+  <div data-drags-parent="1" style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#8a7a5e; padding:0 0 14px 4px; font-weight:600;">Direction 02 — Heirloom-Classic · “The Keepsake”</div>
+  <div style="background:#ffffff; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.10), 0 24px 60px -30px rgba(40,35,25,.35); padding:60px; display:flex; flex-direction:column; gap:46px;">
+
+    <div style="display:flex; flex-direction:column; gap:10px; border-bottom:1px solid #ece6d6; padding-bottom:30px;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; color:#211F1A; line-height:1;">The Keepsake</div>
+      <div style="font-family:'Jost',sans-serif; font-size:14.5px; line-height:1.6; color:#6a6253; max-width:560px; font-weight:300;">The weight and ceremony of fine stationery — a calling card, a wax seal, a thing handed down. Quiet, dignified, a little ceremonial. Reluctant to part with, which is the whole point.</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#a99c80; font-weight:400;">Wordmark</div>
+      <div style="display:flex; align-items:center; gap:26px;">
+        <div style="position:relative; width:62px; height:62px; flex:none; border:1px solid #B0894E; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+          <div style="position:absolute; inset:5px; border:1px solid #B0894E; opacity:.4; border-radius:50%;"></div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:600; color:#B0894E; line-height:1; padding-bottom:3px;">P</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; letter-spacing:.03em; color:#211F1A; line-height:1;">PROCREATE</div>
+          <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:#9a8e74; font-weight:400;">Fertility Center of Virginia</div>
+        </div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:#9a8e74;">An engraved monogram sealed in a ring — the mark you’d find embossed on heirloom stationery.</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#a99c80; font-weight:400;">Palette</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:#9a8e74; margin-top:-6px;">Ivory and ink lifted by antique gold, warmed by a single whisper of oxblood.</div>
+      <div style="display:flex; gap:12px;">
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#211F1A;"></div><div style="font-family:'Jost',sans-serif; font-size:11.5px; color:#39342a; font-weight:400; margin-top:9px;">Ink</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a99c80;">#211F1A</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#F2EBD9; border:1px solid #ece6d6;"></div><div style="font-family:'Jost',sans-serif; font-size:11.5px; color:#39342a; font-weight:400; margin-top:9px;">Aged Ivory</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a99c80;">#F2EBD9</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#B0894E;"></div><div style="font-family:'Jost',sans-serif; font-size:11.5px; color:#39342a; font-weight:400; margin-top:9px;">Antique Gold</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a99c80;">#B0894E</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#CDC3AD; border:1px solid #ece6d6;"></div><div style="font-family:'Jost',sans-serif; font-size:11.5px; color:#39342a; font-weight:400; margin-top:9px;">Soft Stone</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a99c80;">#CDC3AD</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#6B2C2C;"></div><div style="font-family:'Jost',sans-serif; font-size:11.5px; color:#39342a; font-weight:400; margin-top:9px;">Oxblood</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a99c80;">#6B2C2C</div></div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#a99c80; font-weight:400;">Typography</div>
+      <div style="display:flex; gap:24px;">
+        <div style="flex:1; border:1px solid #ece6d6; border-radius:2px; padding:20px 22px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; color:#211F1A; line-height:1;">Aa</div>
+          <div style="font-family:'Jost',sans-serif; font-size:12.5px; color:#39342a; margin-top:14px;">Cormorant Garamond</div>
+          <div style="font-family:'Jost',sans-serif; font-size:11px; color:#a99c80; font-weight:300;">Display — headlines &amp; program name</div>
+        </div>
+        <div style="flex:1; border:1px solid #ece6d6; border-radius:2px; padding:20px 22px;">
+          <div style="font-family:'Jost',sans-serif; font-size:44px; color:#211F1A; line-height:1; font-weight:400;">Aa</div>
+          <div style="font-family:'Jost',sans-serif; font-size:12.5px; color:#39342a; margin-top:14px;">Jost</div>
+          <div style="font-family:'Jost',sans-serif; font-size:11px; color:#a99c80; font-weight:300;">Labels, terms &amp; small caps</div>
+        </div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:#9a8e74;">Cormorant engraved against Jost’s quiet geometry — the cadence of a fine calling card.</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#a99c80; font-weight:400;">The card — front &amp; back · 3.375″ × 2.125″</div>
+
+      <!-- FRONT -->
+      <div style="position:relative; width:100%; aspect-ratio:1.586; border-radius:8px; overflow:hidden; background:#F2EBD9; box-shadow:0 30px 50px -30px rgba(40,35,25,.5); padding:30px; display:flex; align-items:center; justify-content:center;">
+        <div style="position:absolute; inset:14px; border:1px solid #cbb079; border-radius:4px;"></div>
+        <div style="position:absolute; inset:18px; border:1px solid #ddcaa0; opacity:.6; border-radius:3px;"></div>
+        <div style="position:relative; text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px;">
+          <div style="position:relative; width:38px; height:38px; border:1px solid #B0894E; border-radius:50%; display:flex; align-items:center; justify-content:center;"><div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:#B0894E; padding-bottom:2px;">P</div></div>
+          <div style="font-family:'Jost',sans-serif; font-size:9.5px; letter-spacing:0.24em; text-transform:uppercase; color:#9a8459;">Procreate Fertility Center of Virginia</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:54px; font-weight:600; color:#211F1A; line-height:.95;">The Keepsake</div>
+          <div style="display:flex; align-items:center; gap:12px;"><div style="width:26px; height:1px; background:#B0894E;"></div><div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#7a6e54;">$5,000 toward one full IVF cycle</div><div style="width:26px; height:1px; background:#B0894E;"></div></div>
+        </div>
+        <div style="position:absolute; left:30px; right:30px; bottom:26px; display:flex; align-items:flex-end; justify-content:space-between;">
+          <div style="flex:1; max-width:320px;"><div style="font-family:'Jost',sans-serif; font-size:8px; letter-spacing:0.22em; text-transform:uppercase; color:#a4936a; margin-bottom:8px;">Passed to you by</div><div style="height:1px; background:#cbb079;"></div></div>
+          <div style="font-family:'Space Mono',monospace; font-size:10px; color:#9a8459; letter-spacing:.05em;">No. 0001</div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div style="position:relative; width:100%; aspect-ratio:1.46; border-radius:8px; overflow:hidden; background:#211F1A; box-shadow:0 30px 50px -30px rgba(40,35,25,.6); padding:36px 44px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="position:absolute; inset:12px; border:1px solid #4a4234; opacity:.5; border-radius:4px; pointer-events:none;"></div>
+        <div style="text-align:center; position:relative;">
+          <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:#F2EBD9; line-height:1.5; max-width:470px; margin:0 auto;">Someone carried hope this far, then chose to hand it to you.</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14.5px; color:#9a8e74; line-height:1.45; max-width:440px; margin:10px auto 0;">Alguien llevó la esperanza hasta aquí y decidió entregártela.</div>
+        </div>
+        <div style="display:flex; gap:16px; position:relative;">
+          <div style="flex:1; text-align:center;"><div style="font-family:'Jost',sans-serif; font-size:11px; font-weight:500; color:#D9B877; line-height:1.35;">Valid toward one full IVF cycle</div><div style="font-family:'Jost',sans-serif; font-size:9px; color:#9a8e74; margin-top:4px; font-weight:300;">Un ciclo completo de FIV</div></div>
+          <div style="width:1px; background:#4a4234;"></div>
+          <div style="flex:1; text-align:center;"><div style="font-family:'Jost',sans-serif; font-size:11px; font-weight:500; color:#D9B877; line-height:1.35;">Never expires</div><div style="font-family:'Jost',sans-serif; font-size:9px; color:#9a8e74; margin-top:4px; font-weight:300;">No vence nunca</div></div>
+          <div style="width:1px; background:#4a4234;"></div>
+          <div style="flex:1; text-align:center;"><div style="font-family:'Jost',sans-serif; font-size:11px; font-weight:500; color:#D9B877; line-height:1.35;">Yours to keep, or pass on</div><div style="font-family:'Jost',sans-serif; font-size:9px; color:#9a8e74; margin-top:4px; font-weight:300;">Conservar o entregar</div></div>
+        </div>
+        <div style="border-top:1px solid #4a4234; padding-top:14px; text-align:center; position:relative;">
+          <div style="font-family:'Jost',sans-serif; font-size:8.5px; color:#9a8e74; line-height:1.6; font-weight:300;">Applies as $5,000 off one full IVF cycle at any Procreate location. Not redeemable for cash; holds no stored value.</div>
+          <div style="font-family:'Space Mono',monospace; font-size:8.5px; color:#7c7158; margin-top:8px; letter-spacing:.05em;">procreatefertility.com · No. 0001 · transferable · non-expiring</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#a99c80; font-weight:400;">Companion keepsake card</div>
+      <div style="position:relative; width:100%; height:150px; border-radius:4px; background:#F2EBD9; border:1px solid #ddd1b6; overflow:hidden; padding:24px 30px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="position:absolute; top:18px; right:24px; width:26px; height:26px; border:1px solid #B0894E; border-radius:50%; display:flex; align-items:center; justify-content:center;"><div style="font-family:'Cormorant Garamond',serif; font-size:15px; color:#B0894E; padding-bottom:2px;">P</div></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#211F1A;">A word, in my hand —</div>
+        <div style="height:1px; background:#d3c7a8; margin-top:16px;"></div>
+        <div style="height:1px; background:#d3c7a8; margin-top:14px;"></div>
+        <div style="font-family:'Jost',sans-serif; font-size:10.5px; color:#9a8e74; margin-top:14px; font-weight:300;">A second durable card — ivory enamel over steel — rides behind the keepsake. Twin matte panels take a handwritten line in permanent ink; no paper to yellow or tear.</div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px; background:#f7f2e6; border-radius:4px; padding:22px 24px;">
+      <div style="font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#a99c80; font-weight:400;">Material &amp; finish</div>
+      <div style="font-family:'Jost',sans-serif; font-size:13.5px; line-height:1.65; color:#4a4234; font-weight:300;">Solid stainless steel, ivory-enamel fill, antique-gold foil monogram, brushed face with hand-gilded bevelled edges — weighted like a coin, built to outlast the people who pass it. The “passed to you by” line is a matte enamel panel that takes permanent ink. No paper.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel">
+  <div data-drags-parent="1" style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#8a6f64; padding:0 0 14px 4px; font-weight:600;">Direction 03 — Modern-Minimal · “Begin”</div>
+  <div style="background:#ffffff; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.10), 0 24px 60px -30px rgba(40,38,34,.35); padding:60px; display:flex; flex-direction:column; gap:46px;">
+
+    <div style="display:flex; flex-direction:column; gap:10px; border-bottom:1px solid #eceae4; padding-bottom:30px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:40px; font-weight:700; color:#2B2926; line-height:1; letter-spacing:-.02em;">Begin<span style="color:#C6664B;">.</span></div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:14.5px; line-height:1.6; color:#6c665d; max-width:560px;">Accessible-modern medicine, said plainly. Confident whitespace, one optimistic accent, transparent by design. The premium is in the restraint — and in the metal in your hand.</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a9a395; font-weight:600;">Wordmark</div>
+      <div style="display:flex; align-items:center; gap:24px;">
+        <div style="position:relative; width:54px; height:54px; flex:none; border:2px solid #2B2926; border-radius:50%;"><div style="position:absolute; top:50%; left:50%; width:9px; height:9px; background:#C6664B; border-radius:50%; transform:translate(-50%,-50%);"></div></div>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:27px; font-weight:700; letter-spacing:-.02em; color:#2B2926; line-height:1;">procreate</div>
+          <div style="font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#a9a395; white-space:nowrap;">Fertility Center of Virginia</div>
+        </div>
+      </div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#9a9488; font-style:italic;">One open ring, one point of origin — a beginning reduced to its essential geometry.</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a9a395; font-weight:600;">Palette</div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#9a9488; font-style:italic; margin-top:-6px;">Warm graphite and bone kept nearly silent, so one terracotta can carry all the feeling.</div>
+      <div style="display:flex; gap:12px;">
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#2B2926;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#39362f; font-weight:600; margin-top:9px;">Warm Graphite</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a9a395;">#2B2926</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#F4F1EC; border:1px solid #eceae4;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#39362f; font-weight:600; margin-top:9px;">Bone</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a9a395;">#F4F1EC</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#C6664B;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#39362f; font-weight:600; margin-top:9px;">Terracotta</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a9a395;">#C6664B</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#B6AC9C; border:1px solid #eceae4;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#39362f; font-weight:600; margin-top:9px;">Clay</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a9a395;">#B6AC9C</div></div>
+        <div style="flex:1;"><div style="height:78px; border-radius:2px; background:#8F9C86;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11.5px; color:#39362f; font-weight:600; margin-top:9px;">Sage</div><div style="font-family:'Space Mono',monospace; font-size:10.5px; color:#a9a395;">#8F9C86</div></div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a9a395; font-weight:600;">Typography</div>
+      <div style="display:flex; gap:24px;">
+        <div style="flex:1; border:1px solid #eceae4; border-radius:2px; padding:20px 22px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:46px; color:#2B2926; line-height:1; font-weight:700; letter-spacing:-.03em;">Aa</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12.5px; color:#39362f; font-weight:600; margin-top:14px;">Hanken Grotesk</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; color:#a9a395;">Display &amp; body — tight tracking</div>
+        </div>
+        <div style="flex:1; border:1px solid #eceae4; border-radius:2px; padding:20px 22px;">
+          <div style="font-family:'Space Mono',monospace; font-size:42px; color:#2B2926; line-height:1;">A0</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12.5px; color:#39362f; font-weight:600; margin-top:14px;">Space Mono</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; color:#a9a395;">Serials, values &amp; data</div>
+        </div>
+      </div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#9a9488; font-style:italic;">Hanken Grotesk at tight tracking with Space Mono serials — confident, transparent, contemporary.</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a9a395; font-weight:600;">The card — front &amp; back · 3.375″ × 2.125″</div>
+
+      <!-- FRONT -->
+      <div style="position:relative; width:100%; aspect-ratio:1.586; border-radius:10px; overflow:hidden; background:repeating-linear-gradient(180deg,#2B2926,#2B2926 1px,#302d29 1px,#302d29 3px); box-shadow:0 30px 50px -28px rgba(40,38,34,.7); padding:34px 38px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#9a9488; white-space:nowrap;">procreate · fertility center of virginia</div>
+          <div style="position:relative; width:26px; height:26px; border:1.5px solid #b6b0a4; border-radius:50%;"><div style="position:absolute; top:50%; left:50%; width:6px; height:6px; background:#C6664B; border-radius:50%; transform:translate(-50%,-50%);"></div></div>
+        </div>
+        <div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:60px; font-weight:700; letter-spacing:-.03em; color:#F4F1EC; line-height:.9;">Begin<span style="color:#C6664B;">.</span></div>
+          <div style="font-family:'Space Mono',monospace; font-size:11px; color:#cfc8ba; margin-top:12px; letter-spacing:.02em;">$5,000 toward one full IVF cycle</div>
+        </div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+          <div style="flex:1; max-width:330px;">
+            <div style="font-family:'Space Mono',monospace; font-size:8px; letter-spacing:0.16em; text-transform:uppercase; color:#857f74; margin-bottom:9px;">passed to you by</div>
+            <div style="height:1px; background:#4a4640;"></div>
+          </div>
+          <div style="font-family:'Space Mono',monospace; font-size:11px; color:#b6b0a4;">No.0001</div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div style="position:relative; width:100%; aspect-ratio:1.46; border-radius:10px; overflow:hidden; background:#F4F1EC; box-shadow:0 30px 50px -30px rgba(40,38,34,.45); padding:36px 44px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:18px; font-weight:600; color:#2B2926; line-height:1.45; max-width:520px; letter-spacing:-.01em;">A beginning, given to you. Bring it in whenever you’re ready — it never runs out.</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12.5px; color:#8a8579; line-height:1.45; max-width:520px; margin-top:8px;">Un comienzo, entregado a ti. Tráelo cuando estés lista.</div>
+        </div>
+        <div style="display:flex; gap:16px;">
+          <div style="flex:1;"><div style="width:18px; height:2px; background:#C6664B; margin-bottom:9px;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; color:#2B2926; line-height:1.35;">Valid toward one full IVF cycle</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:9px; color:#8a8579; margin-top:4px;">Un ciclo completo de FIV</div></div>
+          <div style="flex:1;"><div style="width:18px; height:2px; background:#C6664B; margin-bottom:9px;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; color:#2B2926; line-height:1.35;">Never expires</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:9px; color:#8a8579; margin-top:4px;">No vence nunca</div></div>
+          <div style="flex:1;"><div style="width:18px; height:2px; background:#C6664B; margin-bottom:9px;"></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; color:#2B2926; line-height:1.35;">Yours to keep, or pass on</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:9px; color:#8a8579; margin-top:4px;">Conservar o entregar</div></div>
+        </div>
+        <div style="border-top:1px solid #ddd9cf; padding-top:14px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:8.5px; color:#8a8579; line-height:1.6;">Applies as $5,000 off one full IVF cycle at any Procreate location. Not redeemable for cash; holds no stored value.</div>
+          <div style="font-family:'Space Mono',monospace; font-size:8.5px; color:#a9a395; margin-top:8px;">procreatefertility.com · No.0001 · transferable · non-expiring</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a9a395; font-weight:600;">Companion sleeve</div>
+      <div style="position:relative; width:100%; height:150px; border-radius:4px; background:#F4F1EC; border:1px solid #e2ded4; overflow:hidden; padding:0 36px; display:flex; align-items:center;">
+        <div style="position:absolute; left:0; top:0; bottom:0; width:6px; background:#C6664B;"></div>
+        <div style="flex:1;">
+          <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#a9a395; margin-bottom:10px;">from</div>
+          <div style="height:1px; background:#d6d1c6; max-width:380px;"></div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; color:#8a8579; margin-top:14px;">A matching anodized-aluminum sleeve the card slides into. Its laser-frosted inner panel gives the giver a durable place to inscribe a line in permanent ink — “for when you’re ready.” No paper.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px; background:#f6f3ed; border-radius:4px; padding:22px 24px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a9a395; font-weight:600;">Material &amp; finish</div>
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:13.5px; line-height:1.6; color:#4a463f;">Anodized aluminum in warm graphite, laser-etched mark and serial, the ring’s center filled with terracotta enamel. Squared corners, substantial heft — a metal card that announces itself before a word is read. The “passed to you by” line is a laser-frosted panel that takes permanent ink; ships in a matching aluminum sleeve. No paper.</div>
+    </div>
+
+  </div>
+</div></div><footer><span>Confidential · Procreate Fertility Center of Virginia · June 2026</span><span>Working program name — final name follows the chosen design direction</span></footer></div></body></html>
